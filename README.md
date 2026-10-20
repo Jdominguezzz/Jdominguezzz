@@ -1,35 +1,59 @@
 <!-- Profile README: paste into github.com/Jdominguezzz/Jdominguezzz -->
 
-# João Domingues
+# Hi, I'm João
 
-**BI & Marketing Analyst in Lisbon. The edge is in the data.**
+**Marketing & BI analyst who builds the pipelines behind the numbers.** I take marketing and customer data from raw source to a decision someone can act on, and I test the data before I trust it.
 
-I turn customer and business data into growth decisions, and I build every project in public: the question, the messy middle, the result and what I'd do differently.
-
-Before data, I spent seven years playing football at Benfica and Sporting, then founded a nonprofit that raised €145K through campaigns I planned and measured. Now I'm doing a Master's in Data-Driven Marketing at NOVA IMS.
+MSc Data-Driven Marketing (NOVA IMS, Lisbon) · years managing retail operations, so I read data the way a store manager does: stock, staff, conversion and returns.
 
 ---
 
-### Now building
+### 📌 Featured: [marketing-roi-pipeline](https://github.com/Jdominguezzz/marketing-roi-pipeline)
 
-| Project | The question | Stack | Status |
-|---|---|---|---|
-| [GA4 measurement & funnel audit](https://github.com/Jdominguezzz/marketing-analytics-portfolio) | Can the Google Merchandise Store trust its analytics, and where does the funnel lose money? | GA4 · Explorations | In progress |
-| Lisbon data jobs 2026 | What do data, BI and marketing analyst jobs in Lisbon actually ask for? | Power Query · SQL · Power BI | Starting |
-| Customer journeys → conversion | Which customer journeys predict a purchase? (MSc thesis) | Python · BigQuery · ML | Starting soon |
+**Question:** which marketing channels bring in sellers who actually generate revenue, not just cheap leads?
 
-**Small tools I've shipped:** [retail-shift-report](https://github.com/Jdominguezzz/retail-shift-report), a Python command line tool that turns a weekly shift file into a staffing and overtime summary, built from what store managers check by hand every week.
+An end-to-end ELT pipeline on public Olist marketplace data. It follows **8,000 leads → 842 won sellers → their orders**, and calculates CAC and 3-month LTV:CAC by acquisition channel.
 
-Following along? I post every step on LinkedIn under **#90DaysOfBI**.
+| Paid channel | Cost per lead | Lead → seller | CAC | LTV:CAC (3 mo) |
+|---|---|---|---|---|
+| Paid search | €15.6 | 12.3% | €127 | 0.094 |
+| Paid social | €11.5 | 5.6% | €207 | 0.028 |
 
-### Toolkit
+**So what:** paid social *looks* 26% cheaper per lead, but converts at less than half the rate, so each seller costs 63% more. Neither channel pays back within 3 months, but paid search recovers **3.4× more revenue per euro**. Ranking channels by cost per lead points the budget the wrong way, and the best-converting leads have no tracked channel, so attribution needs fixing first.
 
-**Analysis & BI:** Power BI · Power Query · Excel · KNIME · Python (pandas, scikit-learn) · SQL (learning in public)  
-**Marketing analytics:** GA4 · Meta Ads · Google Ads · HubSpot
+*Conversions and revenue are real Olist data; ad spend is simulated (Olist doesn't publish it). Assumptions are documented in the repo's decision records.*
 
-### Find me
+`Python · DuckDB · dbt · Dagster · GitHub Actions` · 32 scheduled assets · 84 automated tests incl. reconciliation · CI on every PR
 
-[Portfolio](https://jdominguezzz.github.io) · [LinkedIn](https://www.linkedin.com/in/joaopedrodomingues) · joao.pedrodomingues@hotmail.com
+---
+
+### 🔨 Also built
+
+- **[retail-shift-report](https://github.com/Jdominguezzz/retail-shift-report)**: a small Python tool I use in my own job. It turns weekly shift files into staffing and overtime summaries.
+
+### 🚧 In progress
+
+- **GA4 measurement & funnel audit** (Google Merchandise Store): can this store trust its analytics, and where does its funnel lose money? → [marketing-analytics-portfolio](https://github.com/Jdominguezzz/marketing-analytics-portfolio)
+- **Customer journeys → conversion** (MSc thesis): which omnichannel journeys in fashion retail predict a purchase?
+
+### 🛠️ Toolkit
+
+| | |
+|---|---|
+| **Data engineering** | Python · SQL · DuckDB · dbt · Dagster · Git / GitHub Actions |
+| **Analytics, BI & ML** | Power BI · Power Query · Excel · pandas · scikit-learn · PySpark · KNIME |
+| **Marketing** | GA4 · BigQuery · Looker Studio · Meta Ads · Google Ads · HubSpot · SEO tooling |
+
+### 🧭 How I work
+
+1. **Audit the data first.** A good model on bad data is still wrong.
+2. **Tie every metric to a decision.** If nobody would act on it, it's a vanity metric.
+3. **Say what's real and what's assumed.** Simulated inputs, sample sizes and limits are written down, not hidden.
+
+### 📫 Contact
+
+[LinkedIn](https://www.linkedin.com/in/joaopedrodominguesin) · Lisbon · open to Business / BI / Analytics Engineering roles.
+
 
 ---
 
