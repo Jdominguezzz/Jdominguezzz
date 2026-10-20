@@ -1,10 +1,11 @@
 <!-- Profile README: paste into github.com/Jdominguezzz/Jdominguezzz -->
-
 # Hi, I'm João
 
 **Marketing & BI analyst who builds the pipelines behind the numbers.** I take marketing and customer data from raw source to a decision someone can act on, and I test the data before I trust it.
 
-MSc Data-Driven Marketing (NOVA IMS, Lisbon) · years managing retail operations, so I read data the way a store manager does: stock, staff, conversion and returns.
+MSc Data-Driven Marketing (NOVA IMS, Lisbon, in progress) · years managing retail operations, so I read data the way a store manager does: stock, staff, conversion and returns.
+
+Before data: 7 years in Benfica and Sporting's football academies, then founded a nonprofit that raised €145K through campaigns I planned and measured.
 
 ---
 
@@ -19,7 +20,7 @@ An end-to-end ELT pipeline on public Olist marketplace data. It follows **8,000 
 | Paid search | €15.6 | 12.3% | €127 | 0.094 |
 | Paid social | €11.5 | 5.6% | €207 | 0.028 |
 
-**So what:** paid social *looks* 26% cheaper per lead, but converts at less than half the rate, so each seller costs 63% more. Neither channel pays back within 3 months, but paid search recovers **3.4× more revenue per euro**. Ranking channels by cost per lead points the budget the wrong way, and the best-converting leads have no tracked channel, so attribution needs fixing first.
+**So what:** paid social *looks* 26% cheaper per lead, but converts at less than half the rate, so each seller costs 63% more. Neither channel pays back within 3 months, but paid search recovers **3.4× more revenue per euro of acquisition cost**. Ranking channels by cost per lead points the budget the wrong way, and the best-converting leads have no tracked channel, so attribution needs fixing first.
 
 *Conversions and revenue are real Olist data; ad spend is simulated (Olist doesn't publish it). Assumptions are documented in the repo's decision records.*
 
@@ -53,7 +54,6 @@ An end-to-end ELT pipeline on public Olist marketplace data. It follows **8,000 
 ### 📫 Contact
 
 [LinkedIn](https://www.linkedin.com/in/joaopedrodominguesin) · Lisbon · open to Business / BI / Analytics Engineering roles.
-
 
 ---
 
