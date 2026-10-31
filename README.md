@@ -5,7 +5,7 @@
 
 MSc Data-Driven Marketing (NOVA IMS, Lisbon, in progress) · years managing retail operations, so I read data the way a store manager does: stock, staff, conversion and returns.
 
-Before data: 7 years in Benfica and Sporting's football academies, then founded a nonprofit that raised €145K through campaigns I planned and measured.
+Before data: played football at Benfica and Sporting (2013–2020), then founded a nonprofit that raised €145K through campaigns I planned and measured.
 
 ---
 
@@ -28,13 +28,25 @@ An end-to-end ELT pipeline on public Olist marketplace data. It follows **8,000 
 
 ---
 
+### 📌 Also featured: [GA4 measurement & funnel audit](https://github.com/Jdominguezzz/marketing-analytics-portfolio/tree/main/01-ga4-audit)
+
+**Question:** can this store trust its analytics, and where does its funnel lose money?
+
+A 15-point audit of Google's public GA4 demo property (Google Merchandise Store): KPI framework, device-level funnel diagnosis and a live tag test in the browser.
+
+**So what:** mobile converts **5.5× worse than desktop** (1.7% vs 9.4%), mostly at the payment step. Closing half the gap is worth **≈$14k–48k a year** with the same traffic. But fix the tracking first: product views are counted as conversions (~70× real purchases) and feed Google Ads.
+
+`GA4 · Explorations · DevTools` · part of my [marketing-analytics-portfolio](https://github.com/Jdominguezzz/marketing-analytics-portfolio)
+
+---
+
 ### 🔨 Also built
 
 - **[retail-shift-report](https://github.com/Jdominguezzz/retail-shift-report)**: a small Python tool I use in my own job. It turns weekly shift files into staffing and overtime summaries.
 
 ### 🚧 In progress
 
-- **GA4 measurement & funnel audit** (Google Merchandise Store): can this store trust its analytics, and where does its funnel lose money? → [marketing-analytics-portfolio](https://github.com/Jdominguezzz/marketing-analytics-portfolio)
+- **Customer segmentation** (20,000 grocery customers): which customer groups exist, and which campaign fits each? → [marketing-analytics-portfolio](https://github.com/Jdominguezzz/marketing-analytics-portfolio) · Nov 2026
 - **Customer journeys → conversion** (MSc thesis): which omnichannel journeys in fashion retail predict a purchase?
 
 ### 🛠️ Toolkit
@@ -53,7 +65,7 @@ An end-to-end ELT pipeline on public Olist marketplace data. It follows **8,000 
 
 ### 📫 Contact
 
-[LinkedIn](https://www.linkedin.com/in/joaopedrodominguesin) · Lisbon · open to Business / BI / Analytics Engineering roles.
+[LinkedIn](https://www.linkedin.com/in/joaopedrodominguesin) · Lisbon · open to Marketing Analytics, BI and Analytics Engineering roles.
 
 ---
 
