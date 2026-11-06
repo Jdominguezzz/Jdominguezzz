@@ -99,11 +99,13 @@ final class NotchPanelController {
         if notchHeight > 0 {
             // Grow out of the notch: panel starts at the very top of the screen.
             state.topInset = notchHeight
+            state.notchWidth = notchWidth
             height = CGFloat(state.panelHeight) + notchHeight
             topY = frame.maxY
         } else {
             // No notch (external display): hang just below the menu bar.
             state.topInset = 0
+            state.notchWidth = 0
             height = CGFloat(state.panelHeight)
             topY = screen.visibleFrame.maxY
         }
@@ -112,7 +114,4 @@ final class NotchPanelController {
         panel.setFrame(rect, display: true)
     }
 
-    func show() {
-        state.isVisible = true
-    }
 }

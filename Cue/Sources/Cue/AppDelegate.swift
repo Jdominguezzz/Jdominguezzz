@@ -18,7 +18,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         state.openEditor = { [weak self] in self?.openEditor() }
         setUpStatusItem()
         registerHotKeys()
-        panelController.show()
 
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
@@ -27,6 +26,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
+
+    /// Opening Cue again (Finder, Spotlight, Launchpad) brings the teleprompter back.
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        state.show()
+        openEditor()
+        return true
+    }
 
     // MARK: Menu bar
 
@@ -37,6 +43,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         let menu = NSMenu()
         menu.delegate = self
 
+        visibleItem = item("Hide Teleprompter", #selector(toggleVisible))
+        menu.addItem(visibleItem)
+        menu.addItem(.separator())
         playItem = item("Play", #selector(togglePlay))
         menu.addItem(playItem)
         menu.addItem(item("Restart", #selector(restart)))
@@ -45,8 +54,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         menu.addItem(.separator())
         menu.addItem(item("Edit Script…", #selector(openEditor), key: ","))
         menu.addItem(item("Open Script File…", #selector(openFile)))
-        visibleItem = item("Hide Teleprompter", #selector(toggleVisible))
-        menu.addItem(visibleItem)
         hideShareItem = item("Hide from Screen Sharing", #selector(toggleHideShare))
         menu.addItem(hideShareItem)
         menu.addItem(.separator())
@@ -108,7 +115,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         hk.register(keyCode: kVK_ANSI_LeftBracket, modifiers: mods) { [weak self] in self?.state.jump(lines: -3) }
         hk.register(keyCode: kVK_ANSI_RightBracket, modifiers: mods) { [weak self] in self?.state.jump(lines: 3) }
         hk.register(keyCode: kVK_ANSI_R, modifiers: mods) { [weak self] in self?.state.restart() }
-        hk.register(keyCode: kVK_ANSI_T, modifiers: mods) { [weak self] in self?.toggleVisible() }
+        hk.register(keyCode: kVK_ANSI_T, modifiers: mods) { [weak self] in self?.state.toggleVisible() }
     }
 
     // MARK: Actions
@@ -117,7 +124,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
     @objc private func restart() { state.restart() }
     @objc private func faster() { state.faster() }
     @objc private func slower() { state.slower() }
-    @objc private func toggleVisible() { state.isVisible.toggle() }
+    @objc private func toggleVisible() { state.toggleVisible() }
     @objc private func toggleHideShare() { state.hideFromScreenShare.toggle() }
     @objc private func quit() { NSApp.terminate(nil) }
 

@@ -1,19 +1,53 @@
 import SwiftUI
 
-/// Black shape that looks like the notch growing downward: flat top, rounded bottom corners.
+/// Black shape that looks like the notch growing downward.
+/// Inside the menu bar it is only as wide as the notch (so it never covers menu bar icons),
+/// then it widens into the reading area below.
 struct NotchShape: Shape {
+    /// Width of the part inside the menu bar. 0 = no notch, use the full width.
+    var topWidth: CGFloat = 0
+    /// Height of the menu bar / notch.
+    var topHeight: CGFloat = 0
     var radius: CGFloat = 22
 
     func path(in r: CGRect) -> Path {
         var p = Path()
         let rad = min(radius, r.height / 2, r.width / 2)
-        p.move(to: CGPoint(x: r.minX, y: r.minY))
-        p.addLine(to: CGPoint(x: r.maxX, y: r.minY))
-        p.addLine(to: CGPoint(x: r.maxX, y: r.maxY - rad))
-        p.addQuadCurve(to: CGPoint(x: r.maxX - rad, y: r.maxY), control: CGPoint(x: r.maxX, y: r.maxY))
-        p.addLine(to: CGPoint(x: r.minX + rad, y: r.maxY))
-        p.addQuadCurve(to: CGPoint(x: r.minX, y: r.maxY - rad), control: CGPoint(x: r.minX, y: r.maxY))
-        p.closeSubpath()
+        let shoulder: CGFloat = 12   // rounded corner where the stem meets the wide part
+        let inner: CGFloat = 8       // small inward curve under the notch corners
+
+        if topWidth > 0, topHeight > 0, topWidth + 2 * (shoulder + inner) < r.width {
+            let left = r.midX - topWidth / 2
+            let right = r.midX + topWidth / 2
+            let y = r.minY + topHeight
+
+            p.move(to: CGPoint(x: left, y: r.minY))
+            p.addLine(to: CGPoint(x: right, y: r.minY))
+            // Right stem down to the bottom of the menu bar, curving outward
+            p.addLine(to: CGPoint(x: right, y: y - inner))
+            p.addQuadCurve(to: CGPoint(x: right + inner, y: y), control: CGPoint(x: right, y: y))
+            p.addLine(to: CGPoint(x: r.maxX - shoulder, y: y))
+            p.addQuadCurve(to: CGPoint(x: r.maxX, y: y + shoulder), control: CGPoint(x: r.maxX, y: y))
+            // Right side and rounded bottom
+            p.addLine(to: CGPoint(x: r.maxX, y: r.maxY - rad))
+            p.addQuadCurve(to: CGPoint(x: r.maxX - rad, y: r.maxY), control: CGPoint(x: r.maxX, y: r.maxY))
+            p.addLine(to: CGPoint(x: r.minX + rad, y: r.maxY))
+            p.addQuadCurve(to: CGPoint(x: r.minX, y: r.maxY - rad), control: CGPoint(x: r.minX, y: r.maxY))
+            // Left side back up to the shoulder and stem
+            p.addLine(to: CGPoint(x: r.minX, y: y + shoulder))
+            p.addQuadCurve(to: CGPoint(x: r.minX + shoulder, y: y), control: CGPoint(x: r.minX, y: y))
+            p.addLine(to: CGPoint(x: left - inner, y: y))
+            p.addQuadCurve(to: CGPoint(x: left, y: y - inner), control: CGPoint(x: left, y: y))
+            p.closeSubpath()
+        } else {
+            p.move(to: CGPoint(x: r.minX, y: r.minY))
+            p.addLine(to: CGPoint(x: r.maxX, y: r.minY))
+            p.addLine(to: CGPoint(x: r.maxX, y: r.maxY - rad))
+            p.addQuadCurve(to: CGPoint(x: r.maxX - rad, y: r.maxY), control: CGPoint(x: r.maxX, y: r.maxY))
+            p.addLine(to: CGPoint(x: r.minX + rad, y: r.maxY))
+            p.addQuadCurve(to: CGPoint(x: r.minX, y: r.maxY - rad), control: CGPoint(x: r.minX, y: r.maxY))
+            p.closeSubpath()
+        }
         return p
     }
 }
@@ -28,7 +62,8 @@ struct PrompterView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            NotchShape()
+            NotchShape(topWidth: state.notchWidth > 0 ? state.notchWidth + 4 : 0,
+                       topHeight: state.topInset)
                 .fill(Color.black.opacity(state.backgroundOpacity))
 
             VStack(spacing: 0) {
@@ -92,6 +127,7 @@ struct ControlBar: View {
             button("forward.fill", help: "Forward (⌃⌥])") { state.jump(lines: 3) }
             button("arrow.counterclockwise", help: "Restart (⌃⌥R)") { state.restart() }
             button("square.and.pencil", help: "Edit script") { state.openEditor?() }
+            button("xmark", help: "Hide teleprompter (⌃⌥T)") { state.hide() }
             Text("\(Int(state.speed))")
                 .font(.system(size: 10, weight: .medium, design: .monospaced))
                 .foregroundColor(.white.opacity(0.6))

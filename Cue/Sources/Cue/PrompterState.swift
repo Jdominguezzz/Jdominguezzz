@@ -22,10 +22,13 @@ final class PrompterState: ObservableObject {
     // MARK: Runtime state
     @Published var isPlaying = false
     @Published var offset: CGFloat = 0
-    @Published var isVisible = true
+    /// Whether the panel is on screen. Remembered between launches.
+    @Published var isVisible: Bool { didSet { defaults.set(isVisible, forKey: Keys.visible) } }
     @Published var isHovering = false
     /// Height reserved at the top of the panel for the physical notch / menu bar.
     @Published var topInset: CGFloat = 0
+    /// Width of the physical notch (0 when the screen has none).
+    @Published var notchWidth: CGFloat = 0
     var contentHeight: CGFloat = 0
 
     /// Hook set by the app delegate so the in-panel button can open the editor.
@@ -39,7 +42,7 @@ final class PrompterState: ObservableObject {
     private enum Keys {
         static let script = "script", speed = "speed", fontSize = "fontSize"
         static let width = "panelWidth", height = "panelHeight", opacity = "bgOpacity"
-        static let hide = "hideFromScreenShare", mirrored = "mirrored"
+        static let hide = "hideFromScreenShare", mirrored = "mirrored", visible = "visible"
     }
 
     private init() {
@@ -52,6 +55,7 @@ final class PrompterState: ObservableObject {
         backgroundOpacity = d.object(forKey: Keys.opacity) as? Double ?? 1.0
         hideFromScreenShare = d.object(forKey: Keys.hide) as? Bool ?? true
         mirrored = d.object(forKey: Keys.mirrored) as? Bool ?? false
+        isVisible = d.object(forKey: Keys.visible) as? Bool ?? true
     }
 
     // MARK: Playback
@@ -77,6 +81,15 @@ final class PrompterState: ObservableObject {
     func restart() {
         offset = 0
     }
+
+    func hide() {
+        pause()
+        isVisible = false
+    }
+
+    func show() { isVisible = true }
+
+    func toggleVisible() { isVisible ? hide() : show() }
 
     func faster() { speed = min(speed * 1.15, Self.speedRange.upperBound) }
     func slower() { speed = max(speed / 1.15, Self.speedRange.lowerBound) }
@@ -131,6 +144,8 @@ final class PrompterState: ObservableObject {
     ⌃⌥=  faster    ⌃⌥-  slower
     ⌃⌥[  back    ⌃⌥]  forward
     ⌃⌥R  restart    ⌃⌥T  show / hide
+
+    Don't need it right now? Hover and click ✕, press ⌃⌥T, or use the menu bar icon. Open Cue again to bring it back.
 
     You can also scroll on the prompter with your trackpad. Hover it for controls.
 

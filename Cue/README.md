@@ -14,7 +14,8 @@ A tiny macOS menu-bar teleprompter that **grows out of your MacBook Pro's notch*
 
 ## Features
 
-- Black panel that looks like the notch extending down, with your text right under the camera
+- Black panel that looks like the notch extending down, with your text right under the camera. In the menu bar it is only as wide as the notch, so your menu bar icons stay visible
+- Hide it whenever you don't need it: hover and click ✕, press `⌃⌥T`, or use the menu bar icon. It stays hidden until you bring it back, and opening Cue again from Applications or Spotlight shows it
 - Smooth auto-scroll with adjustable speed; stops at the end
 - **Hidden from screen sharing and recordings** (on by default, toggle in settings)
 - Global shortcuts that work while Zoom has focus (no Accessibility permission needed)
