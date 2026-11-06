@@ -42,7 +42,7 @@ final class HotKeyCenter {
             refs.append(ref)
             handlers[id] = action
         } else {
-            NSLog("NotchPrompter: could not register hotkey \(keyCode) (status \(status))")
+            NSLog("Cue: could not register hotkey \(keyCode) (status \(status))")
         }
     }
 

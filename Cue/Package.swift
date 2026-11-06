@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "NotchPrompter",
+    name: "Cue",
     platforms: [.macOS(.v13)],
     targets: [
         .executableTarget(
-            name: "NotchPrompter",
-            path: "Sources/NotchPrompter"
+            name: "Cue",
+            path: "Sources/Cue"
         )
     ]
 )

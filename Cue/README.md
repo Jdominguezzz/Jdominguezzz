@@ -1,4 +1,6 @@
-# NotchPrompter 🎤
+<p align="center"><img src="Resources/AppIcon.png" width="160" alt="Cue icon"></p>
+
+# Cue 🎤
 
 A tiny macOS menu-bar teleprompter that **grows out of your MacBook Pro's notch**, so your script sits right next to the camera during Zoom / Meet / Teams calls, interviews and recordings. You keep eye contact while you read.
 
@@ -40,9 +42,9 @@ A tiny macOS menu-bar teleprompter that **grows out of your MacBook Pro's notch*
 You need macOS 13 or later and the Swift toolchain. Either Xcode or just the Command Line Tools works (`xcode-select --install`).
 
 ```bash
-cd NotchPrompter
-./build-app.sh            # builds build/NotchPrompter.app
-open build/NotchPrompter.app
+cd Cue
+./build-app.sh            # builds build/Cue.app
+open build/Cue.app
 
 # or build and copy to /Applications in one go
 ./build-app.sh --install
@@ -68,11 +70,14 @@ The panel uses `NSWindow.sharingType = .none`, which hides it from most screen-s
 ## Project layout
 
 ```
-NotchPrompter/
+Cue/
 ├── Package.swift
 ├── build-app.sh              # builds a proper .app bundle
-├── Resources/Info.plist      # LSUIElement = menu-bar app
-└── Sources/NotchPrompter/
+├── Resources/
+│   ├── Info.plist            # LSUIElement = menu-bar app
+│   ├── AppIcon.svg           # icon source
+│   └── AppIcon.png           # 1024px icon (build turns it into .icns)
+└── Sources/Cue/
     ├── main.swift
     ├── AppDelegate.swift     # menu-bar item, hotkeys, editor window
     ├── NotchPanel.swift      # notch-positioned floating panel

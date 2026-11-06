@@ -123,7 +123,7 @@ final class PrompterState: ObservableObject {
     }
 
     static let welcomeText = """
-    Welcome to NotchPrompter 👋
+    Welcome to Cue 👋
 
     Click the menu bar icon and choose “Edit Script…” to paste your transcript, or open a .txt / .docx / .rtf file.
 

@@ -32,7 +32,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
 
     private func setUpStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.button?.image = NSImage(systemSymbolName: "text.viewfinder", accessibilityDescription: "NotchPrompter")
+        statusItem.button?.image = NSImage(systemSymbolName: "text.viewfinder", accessibilityDescription: "Cue")
 
         let menu = NSMenu()
         menu.delegate = self
@@ -50,7 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         hideShareItem = item("Hide from Screen Sharing", #selector(toggleHideShare))
         menu.addItem(hideShareItem)
         menu.addItem(.separator())
-        menu.addItem(item("Quit NotchPrompter", #selector(quit), key: "q"))
+        menu.addItem(item("Quit Cue", #selector(quit), key: "q"))
         statusItem.menu = menu
     }
 
@@ -72,7 +72,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
         let main = NSMenu()
         let appItem = NSMenuItem()
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "Quit NotchPrompter", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Quit Cue", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appItem.submenu = appMenu
         main.addItem(appItem)
 
@@ -135,7 +135,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, NSWind
             let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 560, height: 680),
                              styleMask: [.titled, .closable, .miniaturizable, .resizable],
                              backing: .buffered, defer: false)
-            w.title = "NotchPrompter — Script & Settings"
+            w.title = "Cue — Script & Settings"
             w.contentView = NSHostingView(rootView: EditorView())
             w.isReleasedWhenClosed = false
             w.delegate = self
